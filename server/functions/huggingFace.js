@@ -1,5 +1,5 @@
-let token = "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"; // Token de Hugging Face
-let imgbbApiKey = "680280f710b556a112db8220e13b0da6"; // Token de imgBB
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // Función para generar imágenes usando Hugging Face y cargar en imgBB
 export async function generate(prompt) {
@@ -11,7 +11,7 @@ export async function generate(prompt) {
             "https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image",
             {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${process.env.HUGGING_FACE_TOKEN}`,
                 },
                 method: "POST",
                 body: JSON.stringify({ inputs: prompt }),
@@ -28,7 +28,7 @@ export async function generate(prompt) {
         const formData = new FormData();
         formData.append("image", imageBlob, "generatedImage.png");
         const imgbbResponse = await fetch(
-            `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+            `https://api.imgbb.com/1/upload?key=${process.env.IMGBB_API_KEY}`,
             {
                 method: "POST",
                 body: formData,
