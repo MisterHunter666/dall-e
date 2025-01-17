@@ -1,6 +1,3 @@
-let token = "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"; // Token de Hugging Face
-let imgbbApiKey = "680280f710b556a112db8220e13b0da6"; // Token de imgBB
-
 // Función para generar imágenes usando Hugging Face y cargar en imgBB
 export async function generate(prompt) {
     try {
